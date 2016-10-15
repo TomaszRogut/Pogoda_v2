@@ -34,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 wybrane_miasto = (String)spinner.getSelectedItem();
             }
@@ -47,35 +46,45 @@ public class MainActivity extends AppCompatActivity {
         });
 
         PRZEJDZ.setOnClickListener(new View.OnClickListener() {
-
+            private final int REQUEST_CODE = 1;
             @Override
             public void onClick(View v) {
 
                 switch(wybrane_miasto){
 
                     case "WARSZAWA":
-                        intent = new Intent(MainActivity.this, WarszawaActivity.class);
-                        startActivity(intent);
+                        intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra("miasto_url", "Warsaw");
+                        intent.putExtra("miasto_wynik", "Warszawa");
+                        startActivityForResult(intent,REQUEST_CODE);
                         break;
 
                     case "PARYŻ":
-                        intent = new Intent(MainActivity.this, ParyzActivity.class);
-                        startActivity(intent);
+                        intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra("miasto_url", "Paris");
+                        intent.putExtra("miasto_wynik", "Paryż");
+                        startActivityForResult(intent,REQUEST_CODE);
                         break;
 
                     case "TOKIO":
-                        intent = new Intent(MainActivity.this, TokioActivity.class);
-                        startActivity(intent);
+                        intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra("miasto_url", "Tokyo");
+                        intent.putExtra("miasto_wynik", "Tokio");
+                        startActivityForResult(intent,REQUEST_CODE);
                         break;
 
                     case "MOSKWA":
-                        intent = new Intent(MainActivity.this, MoskwaActivity.class);
-                        startActivity(intent);
+                        intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra("miasto_url", "Moscow");
+                        intent.putExtra("miasto_wynik", "Moskwa");
+                        startActivityForResult(intent,REQUEST_CODE);
                         break;
 
                     case "TORONTO":
-                        intent = new Intent(MainActivity.this, TorontoActivity.class);
-                        startActivity(intent);
+                        intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra("miasto_url", "Toronto");
+                        intent.putExtra("miasto_wynik", "Toronto");
+                        startActivityForResult(intent,REQUEST_CODE);
                         break;
 
                 }

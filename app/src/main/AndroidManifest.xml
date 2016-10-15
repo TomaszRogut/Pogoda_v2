@@ -16,11 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WarszawaActivity"></activity>
-        <activity android:name=".ParyzActivity"></activity>
-        <activity android:name=".TokioActivity"></activity>
-        <activity android:name=".MoskwaActivity"></activity>
-        <activity android:name=".TorontoActivity"></activity>
+        <activity android:name=".SecondActivity"></activity>
+
     </application>
 
 </manifest>

@@ -2,13 +2,8 @@ package com.example.tomek.pogoda_v2;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -21,29 +16,25 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import android.app.Activity;
 
-public class WarszawaActivity extends AppCompatActivity {
-
-    String miasto="Warsaw";
-    String api_key="538dd70cc3c1820cd692c99ed8671edd";
-    String jezyk="pl";
-    String url = "http://api.openweathermap.org/data/2.5/weather?q=" + miasto + "&appid=" + api_key + "&lang=" + jezyk + "&units=metric";
+public class SecondActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_warszawa);
+        setContentView(R.layout.activity_second);
 
+        Intent intent = getIntent();
+
+        String miasto_url = intent.getStringExtra("miasto_url");
+
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + miasto_url + "&appid=538dd70cc3c1820cd692c99ed8671edd&lang=&units=metric";
 
         TextView textView = (TextView) findViewById(R.id.textView);
         new GetWeatherTask(textView).execute(url);
     }
     private class GetWeatherTask extends AsyncTask<String, Void, String> {
         private TextView textView;
-
 
         public GetWeatherTask(TextView textView) {
             this.textView = textView;
@@ -97,7 +88,9 @@ public class WarszawaActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String weather) {
-            textView.setText("Pogoda dla Warszawy: " + "\n" + weather);
+            Intent intent = getIntent();
+            String miasto_wynik = intent.getStringExtra("miasto_wynik");
+            textView.setText("Pogoda dla miasta " + miasto_wynik + "\n" + weather);
         }
     }
 }
